@@ -141,6 +141,7 @@ const Form = ({ state }) => {
             <Row className="mt-5">
             <Col md="12">
               <p className="h3">Paso 2:</p>
+              <div className="table-responsive">
                 <table className="table table-sm text-dark">
                   <thead>
                     <tr>
@@ -171,6 +172,7 @@ const Form = ({ state }) => {
 
                   </tbody>
                 </table>
+                </div>
               </Col>
             </Row>
           }

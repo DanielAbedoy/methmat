@@ -7,14 +7,22 @@ export default {
     },
     {
       name: 'Métodos 2.n',
-      icon: 'Plus',
+      icon: 'Circle',
       children: [
+        {
+          name: "Newton",
+          url: '/meto-dos/newton',
+          icon:"Minus"
+        },
         {
           name: "Biseccion",
           url: '/meto-dos/biseccion',
-        }
+          icon:"Plus"
+        },
+        
       ],
     },
+
 /*     
     {
       name: 'UI Elements',

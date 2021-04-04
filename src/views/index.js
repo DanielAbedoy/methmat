@@ -23,6 +23,7 @@ import PaginationPage from './elements/Pagination';
 import ErrorPage from './pages/404';
 
 import Biseccion from './dos/Biseccion/Biseccion';
+import Newton from './dos/Newton/Newton';
 
 // See React Router documentation for details: https://reacttraining.com/react-router/web/api/Route
 const pageList = [
@@ -30,6 +31,11 @@ const pageList = [
     name: 'Método de bisección',
     path: '/meto-dos/biseccion',
     component: Biseccion,
+  },
+  {
+    name: 'Método de Newton',
+    path: '/meto-dos/newton',
+    component: Newton,
   },
   {
     name: 'Inicio',
