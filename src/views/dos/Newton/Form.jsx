@@ -5,8 +5,8 @@ import Evaluador from '../../../utils/Evaluador';
 
 const Form = ({ state }) => {
 
-  const [funcion, setFuncion] = useState('');
-  const [derivada, setDerivada] = useState('');
+  const [funcion, setFuncion] = useState('pot(x,3)+3*pot(x,2)+12*x+8');
+  const [derivada, setDerivada] = useState('3*x*(x+2)+12');
   const [x0, setX0] = useState(0);
   const [reps, setReps] = useState(0);
   const [tolerancia, setTolerancia] = useState(0);
@@ -16,14 +16,27 @@ const Form = ({ state }) => {
   const evaluador = new Evaluador(expr);
 
   const validar = () => {
-    if (funcion === '' || derivada === '') return false;
+    if (funcion === '' || derivada === '' || reps <= 0) return false;
     return true;
   }
 
+  const [respuesta, setRespuesta] = useState({ f1: '', f2: '' });
+
+  const formatter = new Intl.NumberFormat('es-MX', {
+    minimumFractionDigits: 4,      
+    maximumFractionDigits: 4,
+ });
+
   const generar = () => {
-    if (validar()) {
-      iteracionesFn();
+    try {
+      if (validar()) {
+        iteracionesFn();
+      }  
+    } catch (error) {
+      console.log(error)
+      alert("Algo salio mal")
     }
+    
   }
 
   const iteracionesFn = () => {
@@ -38,14 +51,14 @@ const Form = ({ state }) => {
 
       iterac.push({xn:Xn, fxn: funcionEval, fpxn: derivadaEval, xn1:XN1});
       if (i > 0) {
-        let fix1 = XN1.toFixed(4);
-        let fix2 = iterac[i - 1].xn1.toFixed(4);
+        let fix1 = formatter.format(XN1);
+        let fix2 = formatter.format(iterac[i - 1].xn1);
         console.log(fix1,fix2)
         if (fix1 === fix2) f = true;
       }
       i++;
       Xn = XN1;
-    } while (i < reps && !f);
+    } while (i < reps && !f );
     
     setIteraciones([...iterac]);
   }
