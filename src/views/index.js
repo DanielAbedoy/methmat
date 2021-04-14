@@ -24,6 +24,7 @@ import ErrorPage from './pages/404';
 
 import Biseccion from './dos/Biseccion/Biseccion';
 import Newton from './dos/Newton/Newton';
+import FalsaPosicion from './dos/FalsaPosicion/FalsaPosicion';
 
 // See React Router documentation for details: https://reacttraining.com/react-router/web/api/Route
 const pageList = [
@@ -36,6 +37,11 @@ const pageList = [
     name: 'Método de Newton',
     path: '/meto-dos/newton',
     component: Newton,
+  },
+  {
+    name: 'Método de la Falsa Posicion',
+    path: '/meto-dos/falsa-posicion',
+    component: FalsaPosicion,
   },
   {
     name: 'Inicio',

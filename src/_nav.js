@@ -19,6 +19,11 @@ export default {
           url: '/meto-dos/biseccion',
           icon:"Plus"
         },
+        {
+          name: "False Posicion",
+          url: '/meto-dos/falsa-posicion',
+          icon:"Minus"
+        },
         
       ],
     },
