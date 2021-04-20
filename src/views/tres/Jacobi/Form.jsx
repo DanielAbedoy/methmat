@@ -108,7 +108,7 @@ const Form = ({ state }) => {
           {num_ecuaciones !== 0 &&
             <Row style={{ maxHeight: "500px", overflow: "auto" }}>
 
-              {Object.keys(inputs).map((i, k) => {
+              { inputs[0] !== undefined && Object.keys(inputs).map((i, k) => {
                 return (
                   <Col md="7" className="mx-auto my-2" key={k}>
                     {/* <p className="h5"><b>Valor inicial</b></p> */}
