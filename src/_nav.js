@@ -26,7 +26,21 @@ export default {
         },
         
       ],
+      
     },
+    {
+      name: 'Métodos 3.n',
+      icon: 'Square',
+      children: [
+        {
+          name: "Jacobi",
+          url: '/tres/jacobi',
+          icon:"Plus"
+        },
+        
+      ],
+    },
+    
 
 /*     
     {

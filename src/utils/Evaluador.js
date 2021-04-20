@@ -152,6 +152,19 @@ class Evaluador {
 
   }
 
+  evaluarFuncionMasVariables(funcion, variables, valores) {
+    
+    for (let i = variables.length -1 ; i >=0; i--) funcion = funcion.replace(variables[i], valores[i].r);
+    this.expreciones.forEach(e => funcion = funcion.replace(e.expr, e.replaceStr));
+    try {
+      return eval(funcion);  
+    } catch (error) {
+      console.log(error)
+      return 0;
+    }
+    
+  }
+
   
 }
 

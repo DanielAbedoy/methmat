@@ -26,8 +26,15 @@ import Biseccion from './dos/Biseccion/Biseccion';
 import Newton from './dos/Newton/Newton';
 import FalsaPosicion from './dos/FalsaPosicion/FalsaPosicion';
 
+import Jacobi from './tres/Jacobi/Jacobi';
+
 // See React Router documentation for details: https://reacttraining.com/react-router/web/api/Route
 const pageList = [
+  {
+    name: 'Método de Jacobi',
+    path: '/tres/jacobi',
+    component: Jacobi,
+  },
   {
     name: 'Método de bisección',
     path: '/meto-dos/biseccion',

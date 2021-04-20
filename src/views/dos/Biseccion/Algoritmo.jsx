@@ -15,7 +15,7 @@ const Algoritmo = ({state}) => {
               <p className="h3"><b>Pasos a seguir</b></p>
           </Col>
           <Col className="mx-auto" md="9">
-          <img className="" width="100%" src="http://estadistica-dma.ulpgc.es/FCC/imagenes/diagrama_Biseccion.svg" alt=""/>
+          <img className="" width="100%" src="https://metodosjl.files.wordpress.com/2017/03/gauss-seidel.png?w=356" alt=""/>
           </Col>
         </Row>
 
@@ -62,16 +62,17 @@ const Algoritmo = ({state}) => {
               
                 
               
-                evaluarFuncion(funcion, valor) {
-              
-                  funcion = funcion.replace(this.variable, valor);
+                evaluarFuncionMasVariables(funcion, variables, valores) {
+    
+                  for (let i = variables.length -1 ; i >=0; i--) funcion = funcion.replace(variables[i], valores[i].r);
+                  this.expreciones.forEach(e => funcion = funcion.replace(e.expr, e.replaceStr));
+                  try {
+                    return eval(funcion);  
+                  } catch (error) {
+                    console.log(error)
+                    return 0;
+                  }
                   
-                  this.expreciones.forEach(e => {
-                    funcion = funcion.replace(e.expr, e.replaceStr);
-                  })
-              
-                  return eval(funcion);
-              
                 }
               
                 
@@ -79,70 +80,54 @@ const Algoritmo = ({state}) => {
 
 
               const generar = () => {
-                pasoUno()
-              }
+                try {
+                  let vars = generarVars();
             
-              const iteracionesFunc = () => {
-                let itera = [];
+                  let vals = [];
+                  let copia = [];
+                  for (let i = 0; i < num_ecuaciones; i++) vals.push({ r: x0, xn: i });
             
-                let xi = x0;
-                let xu = x1;
+                  let arrVals = [];
+                  let I = 0;
+                  do {
             
-                let xr = (xi + xu) / 2;
+                    for (let i = 0; i < num_ecuaciones; i++) {
+                      if (I > 1) {
+                        let v = vals[i];
+                        if (v.e <= tolerancia) break;
+                      }
+                      const R = formatter.format(evaluador.evaluarFuncionMasVariables(inputs[i].value, vars, vals));
+                      let e = 0;
+                      if (I > 0) e = encontrarError(vals[i].r, R * 1);
+                      copia.push({ r: R * 1, e: e, xn: i });
+                    }
+                    arrVals.push(copia);
+                    vals = copia.slice();
+                    copia = [];
+                    I++;
             
+                  } while (vals.length > 0);
             
-                let n1 = evaluador.evaluarFuncion(funcion, xi);
-                let n2 = evaluador.evaluarFuncion(funcion, xr);
-                let producto = n1 * n2;
-            
-                itera.push({
-                  xi: xi.toFixed(4), xu: xu.toFixed(4), xr: xr.toFixed(4), fi: n1.toFixed(4),
-                  fxr: n2.toFixed(4), producto: producto.toFixed(4)
-                });
-            
-                if (producto < 0) xu = xr;
-                else xi = xr;
-            
-            
-                let c = 0;
-                while (!decimales(producto) && c < 100) {
-            
-                  xr = (xi + xu) / 2;
-            
-            
-                  n1 = evaluador.evaluarFuncion(funcion, xi);
-                  producto = n1 * evaluador.evaluarFuncion(funcion, xr);;
-            
-                  itera.push({
-                    xi: xi.toFixed(4), xu: xu.toFixed(4), xr: xr.toFixed(4), fi: n1.toFixed(4),
-                    fxr: n2.toFixed(4), producto: producto.toFixed(4)
-                  });
-            
-                  if (producto < 0) xu = xr;
-                  else xi = xr;
-                  c++;
+                  console.log(arrVals);
+                  setIteraciones(arrVals);
+                } catch (e) {
+                  alert("Algo sali mal", e)
                 }
             
-                setIteraciones([...itera]);
-            
-            
               }
             
-              const decimales = (n) => {
-                if (n < 0) n *= -1;
-                if (n > tolerancia) return false;
-                return true;
-            
+              const encontrarError = (valAnterior, valActual) => {
+                return formatter.format(Math.abs(1 - (valAnterior / valActual))) * 1;
               }
             
-              const pasoUno = () => {
-                const ini = evaluador.evaluarFuncion(funcion, x0);
-                const ini2 = evaluador.evaluarFuncion(funcion, x1);
-            
-                setRespuesta({ f1: ini.toFixed(4), f2: ini2.toFixed(4) });
-            
-                if (ini * ini2 < 0) return true;
-                return false;
+              const generarVars = () => {
+                let vars = [];
+                Object.keys(inputs).forEach((e, k) => {
+                  let indice = "";
+                  for (let i = k; i >= 0; i--) indice += ",";
+                  vars.push("x" + indice);
+                })
+                return vars;
               }
             
               `}
