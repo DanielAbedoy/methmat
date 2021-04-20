@@ -8,7 +8,7 @@ const Form = ({ state }) => {
   const [inputs, setInputs] = useState({
     0: { value: "(20.2+0.9*x,,+0.3*x,,,)/25" },
     1: { value: "(18.9+3.7*x,-0.1*x,,,)/7.3" },
-    3: { value: "(56.4+0.7*x,+0.1*x,,)/8.2" },
+    2: { value: "(56.4+0.7*x,+0.1*x,,)/8.2" },
   });
 
   const [x0, setX0] = useState(1);
@@ -106,11 +106,8 @@ const Form = ({ state }) => {
           </Row>
 
           {num_ecuaciones !== 0 &&
-            <Row style={{ maxHeight: "500px", overflow: "auto" }}>
-
-              {inputs[0] !== undefined && inputs[0] !== null &&
-                <>
-                  {inputs[0].value !== undefined &&
+            <Row style={{ maxHeight: "500px", overflow: "auto" }}>              
+                  {
                     Object.keys(inputs).map((i, k) => {
                       return (
                         <Col md="7" className="mx-auto my-2" key={k}>
@@ -122,9 +119,6 @@ const Form = ({ state }) => {
                       );
                     })
                   }
-                </>
-              }
-
             </Row>
           }
 
