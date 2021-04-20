@@ -108,16 +108,22 @@ const Form = ({ state }) => {
           {num_ecuaciones !== 0 &&
             <Row style={{ maxHeight: "500px", overflow: "auto" }}>
 
-              { inputs[0] !== undefined && Object.keys(inputs).map((i, k) => {
-                return (
-                  <Col md="7" className="mx-auto my-2" key={k}>
-                    {/* <p className="h5"><b>Valor inicial</b></p> */}
-                    <Input type="text" placeholder={`Ecuacion despejada en X${(k + 1)}`}
-                      value={inputs[k].value} onChange={e => setValueInput(k, e.target.value)}
-                    />
-                  </Col>
-                );
-              })}
+              {inputs[0] !== undefined && inputs[0] !== null &&
+                <>
+                  {inputs[0].value !== undefined &&
+                    Object.keys(inputs).map((i, k) => {
+                      return (
+                        <Col md="7" className="mx-auto my-2" key={k}>
+                          {/* <p className="h5"><b>Valor inicial</b></p> */}
+                          <Input type="text" placeholder={`Ecuacion despejada en X${(k + 1)}`}
+                            value={inputs[k].value} onChange={e => setValueInput(k, e.target.value)}
+                          />
+                        </Col>
+                      );
+                    })
+                  }
+                </>
+              }
 
             </Row>
           }
