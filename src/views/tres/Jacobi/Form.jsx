@@ -28,6 +28,7 @@ const Form = ({ state }) => {
   useEffect(() => {
     const inArr = {};
     for (let i = 0; i < num_ecuaciones; i++) inArr[i] = { value: "" }
+    setInputs(inArr);
   }, [num_ecuaciones])
 
   const setValueInput = (key, value) => {
