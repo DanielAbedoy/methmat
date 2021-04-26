@@ -27,9 +27,15 @@ import Newton from './dos/Newton/Newton';
 import FalsaPosicion from './dos/FalsaPosicion/FalsaPosicion';
 
 import Jacobi from './tres/Jacobi/Jacobi';
+import Seidel from './tres/Seidel/Seidel';
 
 // See React Router documentation for details: https://reacttraining.com/react-router/web/api/Route
 const pageList = [
+  {
+    name: 'Método de Seidel',
+    path: '/tres/seidel',
+    component: Seidel,
+  },
   {
     name: 'Método de Jacobi',
     path: '/tres/jacobi',

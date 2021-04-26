@@ -37,6 +37,11 @@ export default {
           url: '/tres/jacobi',
           icon:"Plus"
         },
+        {
+          name: "Seidel",
+          url: '/tres/seidel',
+          icon:"Minus"
+        },
         
       ],
     },
