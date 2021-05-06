@@ -5,8 +5,8 @@ import Evaluador from '../../../utils/Evaluador';
 
 const Form = ({ state }) => {
 
-  const [funcion, setFuncion] = useState('pot(x,3)+3*pot(x,2)+12*x+8');
-  const [derivada, setDerivada] = useState('3*x*(x+2)+12');
+  const [funcion, setFuncion] = useState('pot(2.71828,-x)-logn(x)');
+  const [derivada, setDerivada] = useState('-pot(2.71828,-x)-1/x');
   const [x0, setX0] = useState(0);
   const [reps, setReps] = useState(0);
   const [tolerancia, setTolerancia] = useState(0);
@@ -48,7 +48,7 @@ const Form = ({ state }) => {
       let funcionEval = evaluador.evaluarFuncion(funcion, Xn )*1;
       let derivadaEval = evaluador.evaluarFuncion(derivada, Xn)*1;
       let XN1 = Xn - (funcionEval / derivadaEval);
-
+      console.log(funcionEval, derivadaEval, XN1)
       iterac.push({xn:Xn, fxn: funcionEval, fpxn: derivadaEval, xn1:XN1});
       if (i > 0) {
         let fix1 = formatter.format(XN1);

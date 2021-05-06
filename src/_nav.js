@@ -45,7 +45,38 @@ export default {
         
       ],
     },
-    
+    {
+      name: 'Métodos 4.n',
+      icon: 'Circle',
+      children: [
+        {
+          name: "Primeras Derivadas",
+          url: '/cuatro/primeras',
+          icon:"Plus"
+        },
+        {
+          name: "Segundas Derivadas",
+          url: '/cuatro/segundas',
+          icon:"Minus"
+        },
+        {
+          name: "Método del Trapecio",
+          url: '/cuatro/trapecio',
+          icon:"Plus"
+        },
+        {
+          name: "1/3 de Simpson",
+          url: '/cuatro/tercio',
+          icon:"Minus"
+        },
+        {
+          name: "3/8 de Simpson",
+          url: '/cuatro/octavos',
+          icon:"Plus"
+        },
+        
+      ],
+    },
 
 /*     
     {

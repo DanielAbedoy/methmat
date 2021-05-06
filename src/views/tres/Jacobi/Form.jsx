@@ -64,7 +64,7 @@ const Form = ({ state }) => {
         copia = [];
         I++;
 
-      } while (vals.length > 0);
+      } while (vals.length > 0 && I< 10);
 
       console.log(arrVals);
       setIteraciones(arrVals);

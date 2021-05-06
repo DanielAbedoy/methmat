@@ -112,6 +112,8 @@ const Form = ({ state }) => {
       const ini = evaluador.evaluarFuncion(funcion, x0);
       const ini2 = evaluador.evaluarFuncion(funcion, x1);
 
+      console.log(ini, ini2)
+
       setRespuesta({ f1: ini.toFixed(4), f2: ini2.toFixed(4) });
 
       if (ini * ini2 < 0) return true;
@@ -174,8 +176,7 @@ const Form = ({ state }) => {
                   <table className="table table-sm text-dark">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Xi</th>
+
                         <th scope="col">Xu</th>
                         <th scope="col">Xr</th>
                         <th scope="col">f(Xi)</th>
@@ -187,8 +188,7 @@ const Form = ({ state }) => {
                       {iteraciones.map((i, k) => {
                         return (
                           <tr key={k}>
-                            <td>{k + 1}</td>
-                            <td>{i.xi}</td>
+
                             <td>{i.xu}</td>
                             <td>{i.xr}</td>
                             <td>{i.fi}</td>

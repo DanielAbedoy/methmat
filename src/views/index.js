@@ -29,8 +29,39 @@ import FalsaPosicion from './dos/FalsaPosicion/FalsaPosicion';
 import Jacobi from './tres/Jacobi/Jacobi';
 import Seidel from './tres/Seidel/Seidel';
 
+import Primeras from './cuatro/Primeras/Primeras';
+import Segundas from './cuatro/Segundas/Segundas';
+import Trapecio from './cuatro/Trapecio/Traprecio';
+import Tercio from './cuatro/Tercio/Tercio';
+import Octavos from './cuatro/Octavos/Octavos';
+
 // See React Router documentation for details: https://reacttraining.com/react-router/web/api/Route
 const pageList = [
+  {
+    name: 'Integración numérica "3/8 de Simpson"',
+    path: '/cuatro/octavos',
+    component: Octavos,
+  },
+  {
+    name: 'Integración numérica "1/3 de Simpson"',
+    path: '/cuatro/tercio',
+    component: Tercio,
+  },
+  {
+    name: 'Integración numérica "Trapecio"',
+    path: '/cuatro/trapecio',
+    component: Trapecio,
+  },
+  {
+    name: 'Diferenciación numerica "Segundas"',
+    path: '/cuatro/segundas',
+    component: Segundas,
+  },
+  {
+    name: 'Diferenciación numerica "Primeras"',
+    path: '/cuatro/primeras',
+    component: Primeras,
+  },
   {
     name: 'Método de Seidel',
     path: '/tres/seidel',

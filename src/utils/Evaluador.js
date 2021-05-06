@@ -41,7 +41,13 @@ class Evaluador {
         funcion: "log10(x)",
         comando:"log10(x)"
       },
-     
+      {
+        name: "Logaritmo natural 10",
+        expr: /logn/g,
+        replaceStr: "Math.LN10",
+        funcion: "logn(x)",
+        comando:"logn(x)"
+      },
       {
         name: "Valor de PI",
         expr: /PI/g,

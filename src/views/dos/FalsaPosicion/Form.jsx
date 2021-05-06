@@ -4,7 +4,7 @@ import Evaluador from '../../../utils/Evaluador';
 
 const Form = ({ state }) => {
 
-  const [funcion, setFuncion] = useState('pot(x,3)-2*pot(x,2)+3*x-8');
+  const [funcion, setFuncion] = useState('pot(2.71828,-x)-log(x)');
   const [x0, setX0] = useState(2.2);
   const [x1, setX1] = useState(2.5);
   const [tolerancia, setTolerancia] = useState(0.0003);
@@ -68,6 +68,7 @@ const Form = ({ state }) => {
         }
 
         x3 = ((y2 * X1) - (y1 * X2)) / (y2 - y1);
+        console.log(x3)
         if (Math.abs((xp / x3 - 1)) < tolerancia) {
           
           setIteraciones([...itera]);
