@@ -7,6 +7,7 @@ const Form = ({ state }) => {
   const [funcion, setFuncion] = useState('6*x-5');
   const [values, setValues] = useState({ a: -1.5, b: 0.5, h: 0.5 });
   const [iteraciones, setIteraciones] = useState([]);
+  const [area, setArea] = useState(0);
 
 
   const expr = /x/g;
@@ -23,9 +24,11 @@ const Form = ({ state }) => {
   const generar = () => {
     const valsX = generarIntervalos();
     const reps = [];
+    let a = 0;
     valsX.forEach(v => {
       const B = v + values.h;
-      const h = (B - v) / 3;
+      //const h = (B - v) / 3;
+      const h = (values.b - v) / 3;
       const x1 = values.h + v;
       const x2 = values.h + x1;
       const fa = evaluador.evaluarFuncion(funcion, v);
@@ -33,8 +36,10 @@ const Form = ({ state }) => {
       const fx1 = evaluador.evaluarFuncion(funcion, x1);
       const fx2 = evaluador.evaluarFuncion(funcion, x2);
       const i = ((3 * values.h) / 8) * (fa + (3 * fx1) + (3 * fx2) + fb);
+      a += i;
       reps.push({ a: v, B, fa, fb, fx1, fx2, i });
     });
+    setArea(a);
     setIteraciones([...reps]);
   }
 
@@ -113,6 +118,16 @@ const Form = ({ state }) => {
                           </tr>
                         );
                       })}
+                      <tr >
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Area total: {area}</b></td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>

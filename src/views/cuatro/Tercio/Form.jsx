@@ -7,13 +7,13 @@ const Form = ({ state }) => {
   const [funcion, setFuncion] = useState('6*x-5');
   const [values, setValues] = useState({ a: -1.5, b: 0.5, h: 0.5 });
   const [iteraciones, setIteraciones] = useState([]);
+  const [area, setArea] = useState(0);
 
-  
   const expr = /x/g;
 
   const evaluador = new Evaluador(expr);
 
-  
+
   const formatter = new Intl.NumberFormat('es-MX', {
     minimumFractionDigits: 4,
     maximumFractionDigits: 4,
@@ -23,20 +23,24 @@ const Form = ({ state }) => {
   const generar = () => {
     const valsX = generarIntervalos();
     const reps = [];
+    let a = 0;
     valsX.forEach(v => {
       const B = v + values.h;
-      const h = (B-v)/2;
+      //const h = (B-v)/2;
+      const h = (values.b - v) / 2;
       const x1 = v + values.h;
-      const fa = evaluador.evaluarFuncion(funcion,v);
-      const fb = evaluador.evaluarFuncion(funcion,B);
-      const fx1 = evaluador.evaluarFuncion(funcion,x1);
-      const i = (h/3)*(fa+(4*fx1)+fb);
-      reps.push({ a:v, B ,fa, fb, fx1, i });
+      const fa = evaluador.evaluarFuncion(funcion, v);
+      const fb = evaluador.evaluarFuncion(funcion, B);
+      const fx1 = evaluador.evaluarFuncion(funcion, x1);
+      const i = (h / 3) * (fa + (4 * fx1) + fb);
+      a += i;
+      reps.push({ a: v, B, fa, fb, fx1, i });
     });
+    setArea(a);
     setIteraciones([...reps]);
   }
 
-  
+
 
   const generarIntervalos = () => {
     const vals = [];
@@ -59,15 +63,15 @@ const Form = ({ state }) => {
           <Row className="my-4">
             <Col md="4">
               <p className="h5"><b>Valor A</b></p>
-              <Input type="number" placeholder="x0" value={values.a} onChange={e => setValues({...values,a:e.target.value})} />
+              <Input type="number" placeholder="x0" value={values.a} onChange={e => setValues({ ...values, a: e.target.value })} />
             </Col>
             <Col md="4">
               <p className="h5"><b>Valor B</b></p>
-              <Input type="number" placeholder="x1" value={values.b} onChange={e => setValues({...values,b:e.target.value})} />
+              <Input type="number" placeholder="x1" value={values.b} onChange={e => setValues({ ...values, b: e.target.value })} />
             </Col>
             <Col md="4">
               <p className="h5"><b>Valor H</b></p>
-              <Input type="number" placeholder="Aproximada" value={values.h} onChange={e => setValues({...values,h:e.target.value})} />
+              <Input type="number" placeholder="Aproximada" value={values.h} onChange={e => setValues({ ...values, h: e.target.value })} />
             </Col>
           </Row>
           <Row>
@@ -109,6 +113,17 @@ const Form = ({ state }) => {
                           </tr>
                         );
                       })}
+                      <tr >
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Area total: {area}</b></td>
+                      </tr>
+
+
                     </tbody>
                   </table>
                 </div>
@@ -116,7 +131,7 @@ const Form = ({ state }) => {
             </Row>
           }
 
-          
+
 
         </Col>
 

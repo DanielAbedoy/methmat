@@ -7,6 +7,7 @@ const Form = ({ state }) => {
   const [funcion, setFuncion] = useState('6*x-5');
   const [values, setValues] = useState({ a: -1.5, b: 0.5, h: 0.5 });
   const [iteraciones, setIteraciones] = useState([]);
+  const [area, setArea] = useState(0);
 
   
   const expr = /x/g;
@@ -23,13 +24,16 @@ const Form = ({ state }) => {
   const generar = () => {
     const valsX = generarIntervalos();
     const reps = [];
+    let a = 0;
     valsX.forEach(v => {
       const B = v + values.h;
       const fa = evaluador.evaluarFuncion(funcion, v);
       const fb = evaluador.evaluarFuncion(funcion, B);
       const i = (B - v) * ((fa + fb) / 2);
       reps.push({ a:v, B ,fa, fb, i });
+      a += i;
     });
+    setArea(a);
     setIteraciones([...reps]);
   }
 
@@ -104,6 +108,14 @@ const Form = ({ state }) => {
                           </tr>
                         );
                       })}
+                    <tr >
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                      <td><b>Area total: { area}</b></td>
+                          </tr>
                     </tbody>
                   </table>
                 </div>
