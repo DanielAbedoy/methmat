@@ -40,11 +40,9 @@ const Form = ({ state }) => {
     setIteraciones([...reps]);
   }
 
-
-
   const generarIntervalos = () => {
     const vals = [];
-    for (let i = values.a; i <= values.b; i += values.h) vals.push(i);
+    for (let i = values.a*1; i <= values.b; i += (values.h * 1)) vals.push(i * 1);
     return vals;
   }
 
